@@ -1,11 +1,14 @@
-function tlite(opts) {
+function tlite(opts, win) {
   opts = opts || {};
+  win = win || this;
 
   var container = opts.container || document.body;
   var customStyle = opts.style || {};
   var hideTimeout = opts.hideTimeout || 3000;
   var showTimeout = opts.showTimeout || 200;
   var tooltipAttrib = 'data-tooltip';
+  var setTimeout = win.setTimeout;
+  var clearTimeout = win.clearTimeout;
 
   container.addEventListener('mouseover', showTooltip);
   container.addEventListener('mouseout', hideTooltip);
