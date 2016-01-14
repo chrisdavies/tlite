@@ -1,0 +1,27 @@
+{
+  "name": "tlite",
+  "version": "0.0.1",
+  "description": "Tiny tooltip utility",
+  "main": "tlite.js",
+  "directories": {},
+  "scripts": {
+    "test": "jasmine-node test/*.spec.js",
+    "min": "uglifyjs tlite.js --source-map tlite.min.js.map -m -c -o tlite.min.js && echo 'Minified size' && cat tlite.min.js | gzip -9f | wc -c"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/chrisdavies/tlite"
+  },
+  "keywords": [
+    "tooltip"
+  ],
+  "author": "Chris Davies <ferociousturtle@gmail.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/chrisdavies/tlite/issues"
+  },
+  "homepage": "https://github.com/chrisdavies/tlite",
+  "devDependencies": {
+    "jasmine-node": "^1.14.5"
+  }
+}
