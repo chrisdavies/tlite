@@ -6,6 +6,8 @@ Tlite is a small utility for displaying tooltips.
 - 0 dependencies
 - Uses event delegation, so it works with dynamic sites
 
+[![Build Status](https://travis-ci.org/chrisdavies/tlite.svg?branch=master)](https://travis-ci.org/chrisdavies/tlite)
+
 ## Usage
 
 Say, you had something like this in your markup:
