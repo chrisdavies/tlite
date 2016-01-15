@@ -128,6 +128,21 @@
         padding: 0.25em;
         border: 1px solid #DDD;
       }
+
+      .code-sample {
+        background: #1E1E1E;
+        color: #D4D4D4;
+        padding: 2em;
+        margin-bottom: 1.5em;
+      }
+
+      .code-comment {
+        color: #5C8849;
+      }
+
+      .code-str {
+        color: #BF866E;
+      }
     </style>
   </head>
   <body>
@@ -148,9 +163,21 @@
       <p>
         Tlite is a JavaScript tooltip library with <strong>0 dependencies</strong>
         that aims to be as small as possible without skimping on key features. It currently
-        weighs in at <strong>600 bytes</strong> when minified and gzipped. Why? Because
-        the web should be fast. That means minimizing the number of byes sent over the
-        wire.
+        weighs in at less than <strong>650 bytes</strong> when minified and gzipped.
+        Why? Because the web should be fast. That means minimizing the number of byes sent
+        over the wire.
+      </p>
+
+      <pre class="code-sample"><span class="code-comment">// Using es6 syntax, and classList. tlite should work
+// in IE9+, but this sample won't!</span>
+tlite(el => el.classList.contains(<span class="code-str">'tooltip'</span>));</pre>
+
+      <p>
+        That code sample will show tooltips for any elements that have a class of
+        'tooltip'. For more details on how to use tlite, head over to
+        <a href="https://github.com/chrisdavies/tlite" class="tooltip" title="Source Code on GitHub">
+          GitHub
+        </a>.
       </p>
 
       <h3>Multi-directional</h3>
