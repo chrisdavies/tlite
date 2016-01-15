@@ -2,7 +2,7 @@
 
 Tlite is a small utility for displaying tooltips.
 
-- Around 500 bytes minified and gzipped
+- Around 600 bytes minified and gzipped
 - 0 dependencies
 - Uses event delegation, so it works with dynamic sites
 
@@ -26,14 +26,6 @@ tlite()
 ```
 
 Then, you'll get a nice little tooltip showing up over that button when you hover over it.
-
-## TODO
-
-- Write real documentation
-  - Customization
-- Provide screenshots
-- Provide demo
-- Improve testing
 
 ## Installing
 

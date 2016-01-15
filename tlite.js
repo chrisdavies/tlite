@@ -1,52 +1,49 @@
-function tlite(opts, win) {
-  opts = opts || {};
-  win = win || this;
-
-  var container = document.body;
-  var hideTimeout = opts.hideTimeout || 3000;
-  var showTimeout = opts.showTimeout || 200;
-  var tooltipAttrib = 'data-tooltip';
-  var setTimeout = win.setTimeout;
-  var clearTimeout = win.clearTimeout;
-
-  container.addEventListener('mouseover', function (e) {
+function tlite(getTooltipOpts) {
+  document.addEventListener('mouseover', function (e) {
     var el = e.target;
+    var opts = getTooltipOpts(el);
 
-    el.hasAttribute(tooltipAttrib) &&
-      (el.tooltip || Tooltip(el)).show()
-  });
-
-  container.addEventListener('mouseout', function (e) {
-    var el = e.target;
-
-    el.tooltip && el.tooltip.hide();
-  });
-
-  function Tooltip(el) {
-    var tooltipEl;
-    var showTimer;
-    var hideTimer;
-
-    function show() {
-      hideTimer = clearTimeout(hideTimer);
-
-      if (!showTimer) {
-        showTimer = setTimeout(fadeIn, showTimeout);
-      }
+    if (!opts) {
+      el = el.parentElement;
+      opts = el && getTooltipOpts(el);
     }
 
-    function hide() {
-      hideTimer = clearTimeout(hideTimer);
-      showTimer = clearTimeout(showTimer);
-      tooltipEl && el.removeChild(tooltipEl);
+    opts && tlite.show(el, opts, true);
+  });
+}
 
-      tooltipEl = undefined;
+tlite.show = function (el, opts, isAuto) {
+  opts = opts || {};
+
+  (el.tooltip || Tooltip(el, opts)).show();
+
+  function Tooltip(el, opts) {
+    var tooltipEl;
+    var showTimer;
+    var text;
+
+    el.addEventListener('mouseleave', function () {
+      tlite.hide(el, true);
+    });
+
+    function show() {
+      text = el.title || text;
+      el.title = '';
+      !showTimer && (showTimer = setTimeout(fadeIn, isAuto ? 150 : 1))
+    }
+
+    function hide(isAutoHiding) {
+      if (isAuto === isAutoHiding) {
+        showTimer = clearTimeout(showTimer);
+        tooltipEl && el.removeChild(tooltipEl);
+
+        tooltipEl = undefined;
+      }
     }
 
     function fadeIn() {
       if (!tooltipEl) {
-        tooltipEl = createTooltip(el);
-        hideTimer = setTimeout(hide, hideTimeout);
+        tooltipEl = createTooltip(el, text, opts);
       }
     }
 
@@ -56,26 +53,49 @@ function tlite(opts, win) {
     };
   }
 
+  function createTooltip(el, text, opts) {
+    var tooltipEl = document.createElement('span');
+    var grav = opts.grav || 'n';
 
-  function createTooltip(el) {
-    var tooltipEl = document.createElement('div');
-
-    tooltipEl.className = 'tlite';
-    tooltipEl.textContent = el.getAttribute(tooltipAttrib);
+    tooltipEl.className = 'tlite ' + (grav ? 'tlite-' + grav : '');
+    tooltipEl.textContent = text;
 
     el.appendChild(tooltipEl);
 
-    var halfElWidth = el.offsetLeft + (el.offsetWidth / 2);
-    var halfTooltipWidth = tooltipEl.offsetWidth / 2;
+    var arrowSize = 10;
+    var top = el.offsetTop;
+    var left = el.offsetLeft;
+    var width = el.offsetWidth;
+    var height = el.offsetHeight;
+    var tooltipHeight = tooltipEl.offsetHeight;
+    var tooltipWidth = tooltipEl.offsetWidth;
+    var centerEl = left + (width / 2);
+    var vertGrav = grav[0];
+    var horzGrav = grav[1];
 
-    tooltipEl.style.top = (el.offsetTop + el.offsetHeight) + 'px';
-    tooltipEl.style.left = (halfElWidth - halfTooltipWidth) + 'px';
+    tooltipEl.style.top = (
+      vertGrav === 's' ? (top - tooltipHeight - arrowSize) :
+      vertGrav === 'n' ? (top + height + arrowSize) :
+      (top + (height / 2) - (tooltipHeight / 2))
+    ) + 'px';
+
+    tooltipEl.style.left = (
+      horzGrav === 'w' ? left :
+      horzGrav === 'e' ? left + width - tooltipWidth :
+      vertGrav === 'w' ? (left + width + arrowSize) :
+      vertGrav === 'e' ? (left - tooltipWidth - arrowSize) :
+      (centerEl - tooltipWidth / 2)
+    ) + 'px';
 
     tooltipEl.className += ' tlite-visible';
 
     return tooltipEl;
   }
-}
+};
+
+tlite.hide = function (el, isAuto) {
+  el.tooltip && el.tooltip.hide(isAuto);
+};
 
 if (typeof module !== 'undefined' && module.exports) {
   module.exports = tlite;

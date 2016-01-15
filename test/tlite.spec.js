@@ -1,44 +1,21 @@
 var tlite = require('../tlite');
 
+// TODO... flesh this out, or maybe just keep the index.html
+// as a good manual, visual test
 describe('tlite', function () {
   beforeEach(function () {
-    this.body = MockEl();
-
-    global.document = {
-      body: this.body,
-      createElement: MockEl
-    };
+    global.document = this.document = MockEl();
   });
 
   describe('event binding', function () {
     it('uses body as container by default', function () {
-      var el = this.body;
+      var el = this.document;
 
       tlite();
-      expect(el.listeners.length).toBe(2);
+      expect(el.listeners.length).toBe(1);
       expect(el.listeners.some(function (l) { return l.name === 'mouseover' })).toBeTruthy();
-      expect(el.listeners.some(function (l) { return l.name === 'mouseout' })).toBeTruthy();
     });
   })
-
-  describe('show tooltip', function () {
-    it('shows the tooltip when a data-tooltip item is hovered', function (done) {
-      var target = MockEl('hi');
-      var body = this.body;
-
-      tlite({ showTimeout: 1, hideTimeout: 50 }, MockWindow());
-
-      body.trigger('mouseover', { target: target });
-      setTimeout(function() {
-        expect(target.children.length).toBe(1);
-        expect(target.tooltip).toBeDefined();
-        expect(target.children[0].textContent).toBe('hi');
-        expect(target.children[0].className.trim()).toBe('tlite tlite-visible');
-        done();
-      }, 2);
-    })
-  })
-
 
   function MockEl(text) {
     return {
