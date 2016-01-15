@@ -2,7 +2,7 @@
 
 Tlite is a small utility for displaying tooltips.
 
-- Less than 1KB minified and gzipped
+- Around 500 bytes minified and gzipped
 - 0 dependencies
 - Uses event delegation, so it works with dynamic sites
 
@@ -10,13 +10,16 @@ Tlite is a small utility for displaying tooltips.
 
 ## Usage
 
-Say, you had something like this in your markup:
+Include `tlite.css` or write your own.
+Include `tlite.js`.
+
+Then, simply add a `data-tooltip` attribute to any elements that you want to display a tooltip:
 
 ```html
 <button data-tooltip="Hi">Hover Here</button>
 ```
 
-And this somewhere within the body of your page:
+And invoke the tlite function to bind tlite to your page:
 
 ```javascript
 tlite()

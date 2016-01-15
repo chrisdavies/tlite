@@ -11,23 +11,14 @@ describe('tlite', function () {
   });
 
   describe('event binding', function () {
-    it('uses the supplied container element', function () {
-      var el = MockEl();
-      tlite({ container: el });
-      confirmEvents(el);
-      expect(this.body.listeners.length).toBe(0);
-    });
-
     it('uses body as container by default', function () {
-      tlite();
-      confirmEvents(this.body);
-    });
+      var el = this.body;
 
-    function confirmEvents(el) {
+      tlite();
       expect(el.listeners.length).toBe(2);
       expect(el.listeners.some(function (l) { return l.name === 'mouseover' })).toBeTruthy();
       expect(el.listeners.some(function (l) { return l.name === 'mouseout' })).toBeTruthy();
-    }
+    });
   })
 
   describe('show tooltip', function () {
@@ -39,15 +30,10 @@ describe('tlite', function () {
 
       body.trigger('mouseover', { target: target });
       setTimeout(function() {
-        expect(body.children.length).toBe(1);
+        expect(target.children.length).toBe(1);
         expect(target.tooltip).toBeDefined();
-
-        var tooltipEl = body.children[0];
-        expect(tooltipEl.style.background).toBeTruthy();
-        expect(tooltipEl.style.opacity).toBeTruthy();
-        expect(tooltipEl.style.visibility).toBe('visible');
-        expect(tooltipEl.children).toBeDefined();
-        expect(tooltipEl.children[1].textContent).toBe('hi');
+        expect(target.children[0].textContent).toBe('hi');
+        expect(target.children[0].className.trim()).toBe('tlite tlite-visible');
         done();
       }, 2);
     })
