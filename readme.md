@@ -1,7 +1,6 @@
 # Tlite
 
-Tlite is a small utility for displaying tooltips. (
-[Check out the demo.](http://chrisdavies.github.io/tlite/))
+Tlite is a small utility for displaying tooltips. ([Check out the demo.](http://chrisdavies.github.io/tlite/))
 
 - Around 650 bytes minified and gzipped
 - 0 dependencies
