@@ -10,6 +10,8 @@ Tlite is a small utility for displaying tooltips.
 
 ## Usage
 
+[Check out the demo.](http://chrisdavies.github.io/tlite/)
+
 Include `tlite.css` or write your own. Include `tlite.js`. Then write some
 markup like this...
 
