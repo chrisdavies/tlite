@@ -2,7 +2,7 @@
 
 Tlite is a small utility for displaying tooltips.
 
-- Around 600 bytes minified and gzipped
+- Around 650 bytes minified and gzipped
 - 0 dependencies
 - Uses event delegation, so it works with dynamic sites
 
@@ -10,22 +10,65 @@ Tlite is a small utility for displaying tooltips.
 
 ## Usage
 
-Include `tlite.css` or write your own.
-Include `tlite.js`.
-
-Then, simply add a `data-tooltip` attribute to any elements that you want to display a tooltip:
+Include `tlite.css` or write your own. Include `tlite.js`. Then write some
+markup like this...
 
 ```html
-<button data-tooltip="Hi">Hover Here</button>
+<button class="foo" title="Hi">Hover Here</button>
 ```
 
 And invoke the tlite function to bind tlite to your page:
 
 ```javascript
-tlite()
+// Using es6 syntax, and classList. tlite should work
+// in IE9+, but this sample won't!
+tlite(el => el.classList.contains('foo'));
 ```
 
-Then, you'll get a nice little tooltip showing up over that button when you hover over it.
+That will make any elements with a `foo` class show a tooltip when hovered.
+
+## Customize the tooltip's position
+
+The tooltip can be positioned above, below, left, right, etc as follows:
+
+```javascript
+// grav defaults to 'n' (below the target element)
+tlite(el => { grav: 's' });
+```
+
+The `grav` property specifies the position of the tooltip possible values are:
+
+- `s` - The tooltip shows above the target
+- `n` - The tooltip shows below the target
+- `e` - The tooltip shows left of the target
+- `w` - The tooltip shows right of the target
+- `sw` - The tooltip shows to top right of the target
+- `se` - The tooltip shows to top left of the target
+- `nw` - The tooltip shows to bottom right of the target
+- `ne` - The tooltip shows to bottom left of the target
+
+## Manual controls
+
+You can also manually trigger a show/hide of a tooltip:
+
+```javascript
+// Show a tooltip beneath the target element
+tlite.show(targetElement);
+
+// Show a tooltip to the right of the target element
+tlite.show(targetElement, { grav: 'w' });
+
+// Hide it...
+tlite.hide(targetElement);
+```
+
+## Caveats
+
+When the tooltip is displayed, it is inserted as a child of the element it is
+associated with. What this means is that tooltips cannot be displayed on
+contentless tags such as img, input, textarea, etc. The workaround is to put
+the toolltip on a wrapper element. This was done so that if an element is
+dynamically removed from the DOM, its tooltip goes with it.
 
 ## Installing
 
