@@ -65,6 +65,11 @@ tlite.show = function (el, opts, isAuto) {
     var arrowSize = 10;
     var top = el.offsetTop;
     var left = el.offsetLeft;
+
+    if (tooltipEl.offsetParent === el) {
+      top = left = 0;
+    }
+
     var width = el.offsetWidth;
     var height = el.offsetHeight;
     var tooltipHeight = tooltipEl.offsetHeight;
