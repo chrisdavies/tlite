@@ -8,9 +8,9 @@ Tlite is a small utility for displaying tooltips.
 
 [![Build Status](https://travis-ci.org/chrisdavies/tlite.svg?branch=master)](https://travis-ci.org/chrisdavies/tlite)
 
-## Usage
-
 [Check out the demo.](http://chrisdavies.github.io/tlite/)
+
+## Usage
 
 Include `tlite.css` or write your own. Include `tlite.js`. Then write some
 markup like this...
