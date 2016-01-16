@@ -1,0 +1,371 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>TLite - Lightweight Tooltips</title>
+    <meta name="description" content="A demo of the Tlite JavaScript library. Fast tooltips with no dependencies." />
+    <link rel="stylesheet" href="tlite.css">
+    <style>
+      html {font-size: 1em;}
+
+      body {
+        background-color: white;
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        font-weight: 400;
+        line-height: 1.45;
+        color: #333;
+      }
+
+      p {margin-bottom: 1.3em;}
+
+      h1, h2, h3, h4 {
+        margin: 1.414em 0 0.5em;
+        font-weight: inherit;
+        line-height: 1.2;
+      }
+
+      h1 {
+        margin-top: 0;
+        font-size: 3.157em;
+      }
+
+      h2 {font-size: 2.369em;}
+
+      h3 {font-size: 1.777em;}
+
+      h4 {font-size: 1.333em;}
+
+      small, .font_small {font-size: 0.75em;}
+
+      h1 {
+        font-weight: 100;
+        text-align: center;
+      }
+
+      a {
+        color: #357FB1;
+      }
+
+      a:hover {
+        color: #EC4989;
+      }
+
+      button {
+        background: #F5F5F5;
+        border: 1px solid #EEE;
+        font-size: inherit;
+      }
+
+      .modal-action {
+        color: #357FB1;
+        background: transparent;
+        border: 0;
+        font-size: 1.5em;
+      }
+
+      .modal-action:hover {
+        color: #EC4989;
+      }
+
+      .page-nav {
+        text-align: center;
+      }
+
+      .page-nav a {
+        display: inline-block;
+        margin: 0 0.5em;
+      }
+
+      main {
+        max-width: 550px;
+        margin: auto;
+        padding: 2em 2em 4em;
+      }
+
+      .modal {
+        display: none;
+      }
+
+      .demo-nav {
+        text-align: center;
+        border-top: 1px dotted #DDD;
+        padding: 2em;
+      }
+
+      .demo-nav:last-of-type{
+        border-bottom: 1px dotted #DDD;
+      }
+
+      .demo-form {
+        text-align: center;
+      }
+
+      .profile-pic {
+        max-height: 10em;
+        max-width: 10em;
+      }
+
+      .is-modal-showing {
+        display: block;
+        position: fixed;
+        background: #FFF;
+        text-align: center;
+        top: 0.5em;
+        left: 0.5em;
+        bottom: 0.5em;
+        right: 0.5em;
+        z-index: 100;
+        padding: 2em;
+        box-shadow: 0 0 4em black;
+      }
+
+      .demo-form-group {
+        margin-bottom: 0.5em;
+      }
+
+      .demo-form input {
+        font-size: inherit;
+        padding: 0.25em;
+        border: 1px solid #DDD;
+      }
+
+      .code-sample {
+        background: #1E1E1E;
+        color: #D4D4D4;
+        padding: 2em;
+        margin-bottom: 1.5em;
+      }
+
+      .code-comment {
+        color: #5C8849;
+      }
+
+      .code-str {
+        color: #BF866E;
+      }
+    </style>
+  </head>
+  <body>
+    <main>
+      <h1 class="tooltip-n" title="600 bytes, 0 dependencies">
+        Tlite - Lightweight Tooltips
+      </h1>
+
+      <nav class="page-nav">
+        <a href="https://github.com/chrisdavies/tlite" class="tooltip" title="Source Code on GitHub">
+          GitHub
+        </a>
+        <a href="https://www.npmjs.com/package/tlite" class="tooltip" title="Install via NPM">
+          Install
+        </a>
+      </nav>
+
+      <p>
+        Tlite is a JavaScript tooltip library with <strong>0 dependencies</strong>
+        that aims to be as small as possible without skimping on key features. It currently
+        weighs in at less than <strong>650 bytes</strong> when minified and gzipped.
+        Why? Because the web should be fast. That means minimizing the number of byes sent
+        over the wire.
+      </p>
+
+      <pre class="code-sample"><span class="code-comment">// Using es6 syntax, and classList. tlite should work
+// in IE9+, but this sample won't!</span>
+tlite(el => el.classList.contains(<span class="code-str">'tooltip'</span>));</pre>
+
+      <p>
+        That code sample will show tooltips for any elements that have a class of
+        'tooltip'. For more details on how to use tlite, head over to
+        <a href="https://github.com/chrisdavies/tlite" class="tooltip" title="Source Code on GitHub">
+          GitHub
+        </a>.
+      </p>
+
+      <h3>Multi-directional</h3>
+      <p>
+        Hover over the buttons below to see how it looks when variously positioned:
+      </p>
+
+      <div>
+        <nav class="demo-nav">
+          <button class="tooltip-n" title="This is the default">North</button>
+          <button class="tooltip-s" title="Carolina">South</button>
+          <button class="tooltip-e" title="East = Left">East</button>
+          <button class="tooltip-w" title="West = Right">West</button>
+        </nav>
+
+        <nav class="demo-nav">
+          <button class="tooltip-ne" title="North Eastern">North East</button>
+          <button class="tooltip-se" title="South Eastern">South East</button>
+          <button class="tooltip-sw" title="Is a good company">South West</button>
+          <button class="tooltip-nw" title="North Westerly">North West</button>
+        </nav>
+      </div>
+
+      <h3>Plays nice with modals</h3>
+      <p>
+        Tooltips disappear when something flies over their container. Click the
+        modal button to see it in action.
+      </p>
+
+      <div>
+        <nav class="demo-nav">
+          <button class="tooltip show-modal" title="This Should Hide">Show Modal</button>
+        </nav>
+      </div>
+
+      <h3>Can be manually invoked</h3>
+      <p>
+        Click the button below to toggle the tooltip.
+      </p>
+
+      <div>
+        <nav class="demo-nav">
+          <button class="tooltip-m" title="Manual">Click to Manually Show/Hide</button>
+        </nav>
+      </div>
+
+      <h3>Is easily styled</h3>
+      <p>
+        <a href="https://github.com/chrisdavies/tlite/blob/master/tlite.css"
+          class="tooltip"
+          title="All 515 bytes of it">The CSS</a>
+        is minimal and simple to override.
+      </p>
+
+      <h3>Caveats</h3>
+      <p>
+        When the tooltip is displayed, it is inserted as a child of the element it is
+        associated with. What this means is that tooltips cannot be displayed on
+        contentless tags such as img, input, textarea, etc. The workaround is to put
+        the toolltip on a wrapper element. This was done so that if an element is
+        dynamically removed from the DOM, its tooltip goes with it.
+      </p>
+
+      <h3>More Examples</h3>
+
+      <p>
+        Here's a form whose inputs show a tooltip when focused. And an image
+        that shows a tooltip on hover.
+      </p>
+
+      <form class="demo-form">
+        <div class="demo-form-group">
+          <span class="tooltip" title="C'est moi!">
+            <img class="profile-pic" src="https://avatars3.githubusercontent.com/u/833377?v=3&s=460" />
+          </span>
+        </div>
+        <div class="demo-form-group">
+          <span title="Your name, please">
+            <input type="text" placeholder="Full name" />
+          </span>
+        </div>
+        <div class="demo-form-group">
+          <span title="Blue... No yeloooow!">
+            <input type="text" placeholder="Favorite color" />
+          </span>
+        </div>
+      </form>
+
+      <h3>That's all, folks!</h3>
+
+      <p>
+        Head over to
+        <a href="https://github.com/chrisdavies/tlite" class="tooltip" title="Source Code on GitHub">
+          GitHub
+        </a>
+        or
+        <a href="https://www.npmjs.com/package/tlite" class="tooltip" title="Install via NPM">
+          npm
+        </a>
+        and get started! If you want to see the source for this page, it's all
+        inline, so inspect away.
+      </p>
+
+
+      <div class="modal">
+        <main>
+          <h1>An Example Modal</h1>
+          <p>
+            Click anywhere to close. The tooltip should have disappeared as
+            soon as the modal showed up.
+          </p>
+          <footer>
+            <button class="modal-action">Close</button>
+          </footer>
+        </main>
+      </div>
+    </main>
+
+    <script src="tlite.min.js"></script>
+    <script>
+
+      // A complex example, showing how you could
+      // really tailor things even with a single call
+      // to tlite
+      tlite(function (el) {
+        var when = classWhen(el);
+        return when('tooltip', { grav: 's' }) ||
+          when('tooltip-n', { grav: 'n' }) ||
+          when('tooltip-s', { grav: 's' }) ||
+          when('tooltip-w', { grav: 'w' }) ||
+          when('tooltip-e', { grav: 'e' }) ||
+          when('tooltip-se', { grav: 'se' }) ||
+          when('tooltip-ne', { grav: 'ne' }) ||
+          when('tooltip-sw', { grav: 'sw' }) ||
+          when('tooltip-nw', { grav: 'nw' })
+      });
+
+      // Probably all you'll really need for most apps
+      tlite(function (el) {
+        return el.className === 'tooltip-n'
+      })
+
+      // Helper method for handling classes
+      function classWhen(el) {
+        var classes = (el.className || '').split(' ');
+        return function (cssClass, opts) {
+          return ~classes.indexOf(cssClass) && opts;
+        }
+      }
+
+      // A demo of manually showing the tooltip
+      (function manualDemo () {
+        var flag = false;
+
+        document.querySelector('.tooltip-m').addEventListener('click', function (e) {
+          flag = !flag;
+
+          (flag ? tlite.show : tlite.hide)(e.target);
+        });
+      }());
+
+      // A demo for testing that overlaying elements cause the
+      // tooltip to disappear
+      (function modal () {
+        document.querySelector('.show-modal').addEventListener('click', function (e) {
+          document.querySelector('.modal').className += ' is-modal-showing';
+        })
+
+        document.querySelector('.modal').addEventListener('click', function (e) {
+          document.querySelector('.modal').className = 'modal';
+        })
+      }());
+
+      // A demo of tooltipping (it's kinda like cow tipping) on
+      // focus/blur events
+      (function focusTooltips () {
+        var inputs = document.querySelectorAll('input[type=text]');
+
+        Array.prototype.forEach.call(inputs, function (input) {
+          input.addEventListener('focus', function () {
+            tlite.show(input.parentElement, { grav: 'w' })
+          })
+
+          input.addEventListener('blur', function () {
+            tlite.hide(input.parentElement)
+          })
+        })
+      }());
+    </script>
+  </body>
+</html>
