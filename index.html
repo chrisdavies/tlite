@@ -104,6 +104,10 @@
         max-height: 10em;
         max-width: 10em;
       }
+      
+      .pic-wrapper {
+        display: inline-block;
+      }
 
       .is-modal-showing {
         display: block;
@@ -250,7 +254,7 @@ tlite(el => el.classList.contains(<span class="code-str">'tooltip'</span>));</pr
 
       <form class="demo-form">
         <div class="demo-form-group">
-          <span class="tooltip" title="C'est moi!">
+          <span class="tooltip pic-wrapper" title="C'est moi!">
             <img class="profile-pic" src="https://avatars3.githubusercontent.com/u/833377?v=3&s=460" />
           </span>
         </div>
