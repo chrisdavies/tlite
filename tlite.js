@@ -8,7 +8,7 @@ function tlite(getTooltipOpts) {
       opts = el && getTooltipOpts(el);
     }
 
-    opts && tlite.show(el, opts, true);
+    opts &&  tlite.show(el, opts, true);
   });
 }
 
@@ -22,14 +22,17 @@ tlite.show = function (el, opts, isAuto) {
     var showTimer;
     var text;
 
-    el.addEventListener('mouseleave', function () {
-      tlite.hide(el, true);
-    });
+    el.addEventListener('mousedown', autoHide);
+    el.addEventListener('mouseleave', autoHide);
 
     function show() {
       text = el.title || text;
       el.title = '';
-      !showTimer && (showTimer = setTimeout(fadeIn, isAuto ? 150 : 1))
+      text && !showTimer && (showTimer = setTimeout(fadeIn, isAuto ? 150 : 1))
+    }
+
+    function autoHide() {
+      tlite.hide(el, true);
     }
 
     function hide(isAutoHiding) {
