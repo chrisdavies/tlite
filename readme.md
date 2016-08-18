@@ -73,6 +73,8 @@ contentless tags such as img, input, textarea, etc. The workaround is to put
 the toolltip on a wrapper element. This was done so that if an element is
 dynamically removed from the DOM, its tooltip goes with it.
 
+If putting a tooltip inside of a table, you may want to put `tlite-table` class on the table to ensure proper positioning.
+
 ## Installing
 
 Download and include `alite.min.js`
