@@ -34,6 +34,12 @@ That will make any elements with a `foo` class show a tooltip when hovered.
 
 The tooltip can be positioned above, below, left, right, etc as follows:
 
+```html
+<button class="foo" data-tlite="s" title="Hi">Hover Here</button>
+```
+
+The `data-tlite` attribute specifies the position, but it can also be specified in JavaScript:
+
 ```javascript
 // grav defaults to 'n' (below the target element)
 tlite(el => { grav: 's' });

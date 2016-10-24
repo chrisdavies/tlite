@@ -58,7 +58,7 @@ tlite.show = function (el, opts, isAuto) {
 
   function createTooltip(el, text, opts) {
     var tooltipEl = document.createElement('span');
-    var grav = opts.grav || 'n';
+    var grav = opts.grav || el.getAttribute('data-tlite') || 'n';
 
     tooltipEl.className = 'tlite ' + (grav ? 'tlite-' + grav : '');
     tooltipEl.textContent = text;
