@@ -83,7 +83,7 @@ If putting a tooltip inside of a table, you may want to put `tlite-table` class 
 
 ## Installing
 
-Download and include `alite.min.js`
+Download and include `tlite.min.js`
 
 Or install using NPM:
 
