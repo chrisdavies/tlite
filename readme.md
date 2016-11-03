@@ -91,7 +91,7 @@ If you don't want to use the `title` attribute, you can use a `data-tlite` attri
 
 ## Installing
 
-Download and include `alite.min.js`
+Download and include `tlite.min.js`
 
 Or install using NPM:
 
