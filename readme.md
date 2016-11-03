@@ -81,6 +81,14 @@ dynamically removed from the DOM, its tooltip goes with it.
 
 If putting a tooltip inside of a table, you may want to put `tlite-table` class on the table to ensure proper positioning.
 
+## Using something other than title
+
+If you don't want to use the `title` attribute, you can use a `data-tlite` attribute, instead.
+
+```javascript
+<button data-tlite="My Tooltip">Hover Over Me</button>
+```
+
 ## Installing
 
 Download and include `alite.min.js`

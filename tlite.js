@@ -13,6 +13,7 @@ function tlite(getTooltipOpts) {
 }
 
 tlite.show = function (el, opts, isAuto) {
+  var fallbackAttrib = 'data-tlite';
   opts = opts || {};
 
   (el.tooltip || Tooltip(el, opts)).show();
@@ -26,8 +27,9 @@ tlite.show = function (el, opts, isAuto) {
     el.addEventListener('mouseleave', autoHide);
 
     function show() {
-      text = el.title || text;
+      text = el.title || el.getAttribute(fallbackAttrib) || text;
       el.title = '';
+      el.setAttribute(fallbackAttrib, '');
       text && !showTimer && (showTimer = setTimeout(fadeIn, isAuto ? 150 : 1))
     }
 
