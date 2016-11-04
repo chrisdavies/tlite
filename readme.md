@@ -81,6 +81,8 @@ dynamically removed from the DOM, its tooltip goes with it.
 
 If putting a tooltip inside of a table, you may want to put `tlite-table` class on the table to ensure proper positioning.
 
+Tlite was really designed primarily for hover-based tooltips. If you display tlite tooltips on events other than hover (e.g. on focus or something), it is up to you to handle resize events (either repositioning the tooltip or hiding it), otherwise the tooltip could end up in an unexpected place.
+
 ## Using something other than title
 
 If you don't want to use the `title` attribute, you can use a `data-tlite` attribute, instead.
