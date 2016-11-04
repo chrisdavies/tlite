@@ -13,6 +13,7 @@
   visibility: hidden;
   transition: opacity 0.4s;
   box-shadow: 0 0.5rem 1rem -0.5rem black;
+  -webkit-backface-visibility: hidden;
 }
 
 .tlite-visible {
