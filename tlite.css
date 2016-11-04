@@ -15,6 +15,7 @@
   white-space: nowrap;
   box-shadow: 0 0.5rem 1rem -0.5rem black;
   z-index: 1000;
+  -webkit-backface-visibility: hidden;
 }
 
 .tlite-table td,
