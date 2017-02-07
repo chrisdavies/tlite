@@ -22,6 +22,7 @@
   },
   "homepage": "https://github.com/chrisdavies/tlite",
   "devDependencies": {
-    "jasmine-node": "^1.14.5"
+    "jasmine-node": "^1.14.5",
+    "uglifyjs": "^2.4.10"
   }
 }

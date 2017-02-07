@@ -2,7 +2,7 @@
 
 Tlite is a small utility for displaying tooltips. ([Check out the demo.](http://chrisdavies.github.io/tlite/))
 
-- Around 650 bytes minified and gzipped
+- Around 800 bytes minified and gzipped
 - 0 dependencies
 - Uses event delegation, so it is fast and works with dynamic sites
 - IE9+, FF, Safari, Chrome
