@@ -102,26 +102,21 @@ tlite.show = function (el, opts, isAuto) {
     }
 
     positionTooltip();
-    var rect = tooltipEl.getBoundingClientRect()
-    if (rect.height < window.innerHeight) {
-      if (vertGrav === 's' && rect.top < 0) {
-        vertGrav = 'n';
-        positionTooltip();
-      } else if (vertGrav === 'n' && rect.bottom > window.innerHeight) {
-        vertGrav = 's';
-        positionTooltip();
-      }
-    }
 
-    rect = tooltipEl.getBoundingClientRect()
-    if (rect.width < window.innerWidth) {
-      if (horzGrav === 'e' && rect.left < 0) {
-        horzGrav = 'w';
-        positionTooltip();
-      } else if (horzGrav === 'w' && rect.right > window.innerWidth) {
-        horzGrav = 'e';
-        positionTooltip();
-      }
+    var rect = tooltipEl.getBoundingClientRect();
+
+    if (vertGrav === 's' && rect.top < 0) {
+      vertGrav = 'n';
+      positionTooltip();
+    } else if (vertGrav === 'n' && rect.bottom > window.innerHeight) {
+      vertGrav = 's';
+      positionTooltip();
+    } else if (vertGrav === 'e' && rect.left < 0) {
+      vertGrav = 'w';
+      positionTooltip();
+    } else if (vertGrav === 'w' && rect.right > window.innerWidth) {
+      vertGrav = 'e';
+      positionTooltip();
     }
 
     tooltipEl.className += ' tlite-visible';
