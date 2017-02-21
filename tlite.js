@@ -62,7 +62,7 @@ tlite.show = function (el, opts, isAuto) {
     var tooltipEl = document.createElement('span');
     var grav = opts.grav || el.getAttribute('data-tlite') || 'n';
 
-    tooltipEl.textContent = text;
+    tooltipEl.innerHTML = text;
 
     el.appendChild(tooltipEl);
 
