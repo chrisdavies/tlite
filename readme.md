@@ -83,6 +83,8 @@ If putting a tooltip inside of a table, you may want to put `tlite-table` class 
 
 Tlite was really designed primarily for hover-based tooltips. If you display tlite tooltips on events other than hover (e.g. on focus or something), it is up to you to handle resize events (either repositioning the tooltip or hiding it), otherwise the tooltip could end up in an unexpected place.
 
+Tlite does not escape your tooltip text. So, if you want to shove raw HTML in there, you can. But if you want to shove user-input in there, it is *your* job to ensure it is properly escaped!
+
 ## Using something other than title
 
 If you don't want to use the `title` attribute, you can use a `data-tlite` attribute, instead.
