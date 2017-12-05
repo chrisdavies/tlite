@@ -1,3 +1,6 @@
+
+import './tlite.css'
+
 function tlite(getTooltipOpts) {
   document.addEventListener('mouseover', function (e) {
     var el = e.target;
