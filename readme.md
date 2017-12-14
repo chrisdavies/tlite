@@ -1,6 +1,6 @@
 # Tlite
 
-Tlite is a small utility for displaying tooltips. ([Check out the demo.](http://chrisdavies.github.io/tlite/))
+Tlite is a small utility for displaying tooltips. ([Check out the demo.](https://chrisdavies.github.io/tlite/))
 
 - Around 800 bytes minified and gzipped
 - 0 dependencies
@@ -9,7 +9,7 @@ Tlite is a small utility for displaying tooltips. ([Check out the demo.](http://
 
 [![Build Status](https://travis-ci.org/chrisdavies/tlite.svg?branch=master)](https://travis-ci.org/chrisdavies/tlite)
 
-There's also a [pretty sweet CSS-only library](http://kushagragour.in/lab/hint/) which may do the trick, depending on your needs.
+There's also a [pretty sweet CSS-only library](https://kushagragour.in/lab/hint/) which may do the trick, depending on your needs.
 
 ## Usage
 
