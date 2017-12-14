@@ -1,3 +1,6 @@
+
+import './tlite.css'
+
 function tlite(getTooltipOpts) {
   document.addEventListener('mouseover', function (e) {
     var el = e.target;
@@ -129,6 +132,4 @@ tlite.hide = function (el, isAuto) {
   el.tooltip && el.tooltip.hide(isAuto);
 };
 
-if (typeof module !== 'undefined' && module.exports) {
-  module.exports = tlite;
-}
+export default tlite

@@ -1,4 +1,5 @@
-var tlite = require('../tlite');
+// @todo use import instead of require()
+var tlite = require('../dist/tlite.js').default;
 
 // TODO... flesh this out, or maybe just keep the index.html
 // as a good manual, visual test
