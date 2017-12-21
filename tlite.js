@@ -40,8 +40,8 @@ tlite.show = function (el, opts, isAuto) {
     function hide(isAutoHiding) {
       if (isAuto === isAutoHiding) {
         showTimer = clearTimeout(showTimer);
-        tooltipEl && el.removeChild(tooltipEl);
-
+        var parent = tooltipEl && tooltipEl.parentNode;
+        parent && parent.removeChild(tooltipEl);
         tooltipEl = undefined;
       }
     }
