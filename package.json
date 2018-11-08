@@ -1,8 +1,9 @@
 {
   "name": "tlite",
-  "version": "0.1.7",
+  "version": "0.1.8",
   "description": "Tiny tooltip utility",
   "main": "tlite.js",
+  "types": "eev.d.ts",
   "directories": {},
   "scripts": {
     "test": "jasmine-node test/*.spec.js",
@@ -22,7 +23,7 @@
   },
   "homepage": "https://github.com/chrisdavies/tlite",
   "devDependencies": {
-    "jasmine-node": "^1.14.5",
-    "uglify-js": "^3.2.2"
+    "jasmine-node": "^1.16.2",
+    "uglify-js": "^3.4.9"
   }
 }
