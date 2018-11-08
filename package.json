@@ -1,9 +1,8 @@
 {
   "name": "tlite",
-  "version": "0.1.8",
+  "version": "0.1.9",
   "description": "Tiny tooltip utility",
   "main": "tlite.js",
-  "types": "eev.d.ts",
   "directories": {},
   "scripts": {
     "test": "jasmine-node test/*.spec.js",
