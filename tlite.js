@@ -8,11 +8,12 @@ function tlite(getTooltipOpts) {
       opts = el && getTooltipOpts(el);
     }
 
-    opts &&  tlite.show(el, opts, true);
+    opts && tlite.show(el, opts, true);
   });
 }
 
 tlite.show = function (el, opts, isAuto) {
+  var fallbackAttrib = 'data-tlite';
   opts = opts || {};
 
   (el.tooltip || Tooltip(el, opts)).show();
@@ -26,8 +27,9 @@ tlite.show = function (el, opts, isAuto) {
     el.addEventListener('mouseleave', autoHide);
 
     function show() {
-      text = el.title || text;
+      text = el.title || el.getAttribute(fallbackAttrib) || text;
       el.title = '';
+      el.setAttribute(fallbackAttrib, '');
       text && !showTimer && (showTimer = setTimeout(fadeIn, isAuto ? 150 : 1))
     }
 
@@ -38,8 +40,8 @@ tlite.show = function (el, opts, isAuto) {
     function hide(isAutoHiding) {
       if (isAuto === isAutoHiding) {
         showTimer = clearTimeout(showTimer);
-        tooltipEl && el.removeChild(tooltipEl);
-
+        var parent = tooltipEl && tooltipEl.parentNode;
+        parent && parent.removeChild(tooltipEl);
         tooltipEl = undefined;
       }
     }
@@ -58,42 +60,67 @@ tlite.show = function (el, opts, isAuto) {
 
   function createTooltip(el, text, opts) {
     var tooltipEl = document.createElement('span');
-    var grav = opts.grav || 'n';
+    var inner = document.createElement('span');
+    var grav = opts.grav || el.getAttribute('data-tlite') || 'n';
 
-    tooltipEl.className = 'tlite ' + (grav ? 'tlite-' + grav : '');
-    tooltipEl.textContent = text;
+    inner.innerHTML = text;
 
+    tooltipEl.appendChild(inner);
     el.appendChild(tooltipEl);
 
-    var arrowSize = 10;
-    var top = el.offsetTop;
-    var left = el.offsetLeft;
+    var vertGrav = grav[0] || '';
+    var horzGrav = grav[1] || '';
 
-    if (tooltipEl.offsetParent === el) {
-      top = left = 0;
+    function positionTooltip() {
+      tooltipEl.className = 'tlite ' + 'tlite-' + vertGrav + horzGrav;
+      inner.className = 'tlite-inner';
+
+      var arrowSize = 10;
+      var top = el.offsetTop;
+      var left = el.offsetLeft;
+
+      if (tooltipEl.offsetParent === el) {
+        top = left = 0;
+      }
+
+      var width = el.offsetWidth;
+      var height = el.offsetHeight;
+      var tooltipHeight = tooltipEl.offsetHeight;
+      var tooltipWidth = tooltipEl.offsetWidth;
+      var centerEl = left + (width / 2);
+
+      tooltipEl.style.top = (
+        vertGrav === 's' ? (top - tooltipHeight - arrowSize) :
+        vertGrav === 'n' ? (top + height + arrowSize) :
+        (top + (height / 2) - (tooltipHeight / 2))
+      ) + 'px';
+
+      tooltipEl.style.left = (
+        horzGrav === 'w' ? left :
+        horzGrav === 'e' ? left + width - tooltipWidth :
+        vertGrav === 'w' ? (left + width + arrowSize) :
+        vertGrav === 'e' ? (left - tooltipWidth - arrowSize) :
+        (centerEl - tooltipWidth / 2)
+      ) + 'px';
     }
 
-    var width = el.offsetWidth;
-    var height = el.offsetHeight;
-    var tooltipHeight = tooltipEl.offsetHeight;
-    var tooltipWidth = tooltipEl.offsetWidth;
-    var centerEl = left + (width / 2);
-    var vertGrav = grav[0];
-    var horzGrav = grav[1];
+    positionTooltip();
 
-    tooltipEl.style.top = (
-      vertGrav === 's' ? (top - tooltipHeight - arrowSize) :
-      vertGrav === 'n' ? (top + height + arrowSize) :
-      (top + (height / 2) - (tooltipHeight / 2))
-    ) + 'px';
+    var rect = tooltipEl.getBoundingClientRect();
 
-    tooltipEl.style.left = (
-      horzGrav === 'w' ? left :
-      horzGrav === 'e' ? left + width - tooltipWidth :
-      vertGrav === 'w' ? (left + width + arrowSize) :
-      vertGrav === 'e' ? (left - tooltipWidth - arrowSize) :
-      (centerEl - tooltipWidth / 2)
-    ) + 'px';
+    if (vertGrav === 's' && rect.top < 0) {
+      vertGrav = 'n';
+      positionTooltip();
+    } else if (vertGrav === 'n' && rect.bottom > window.innerHeight) {
+      vertGrav = 's';
+      positionTooltip();
+    } else if (vertGrav === 'e' && rect.left < 0) {
+      vertGrav = 'w';
+      positionTooltip();
+    } else if (vertGrav === 'w' && rect.right > window.innerWidth) {
+      vertGrav = 'e';
+      positionTooltip();
+    }
 
     tooltipEl.className += ' tlite-visible';
 
