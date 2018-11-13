@@ -9,7 +9,6 @@
   opacity: 0;
 }
 
-/*needs to be place on the table tag when a td or th inside it contains a tooltip*/
 .tlite-table td,
 .tlite-table th {
   position: relative;
