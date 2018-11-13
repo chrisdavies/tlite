@@ -1,15 +1,15 @@
 # Tlite
 
-Tlite is a small utility for displaying tooltips. ([Check out the demo.](http://chrisdavies.github.io/tlite/))
+Tlite is a small utility for displaying tooltips. ([Check out the demo.](https://chrisdavies.github.io/tlite/))
 
-- Around 650 bytes minified and gzipped
+- Around 800 bytes minified and gzipped
 - 0 dependencies
 - Uses event delegation, so it is fast and works with dynamic sites
 - IE9+, FF, Safari, Chrome
 
 [![Build Status](https://travis-ci.org/chrisdavies/tlite.svg?branch=master)](https://travis-ci.org/chrisdavies/tlite)
 
-There's also a [pretty sweet CSS-only library](http://kushagragour.in/lab/hint/) which may do the trick, depending on your needs.
+There's also a [pretty sweet CSS-only library](https://kushagragour.in/lab/hint/) which may do the trick, depending on your needs.
 
 ## Usage
 
@@ -33,6 +33,12 @@ That will make any elements with a `foo` class show a tooltip when hovered.
 ## Customize the tooltip's position
 
 The tooltip can be positioned above, below, left, right, etc as follows:
+
+```html
+<button class="foo" data-tlite="s" title="Hi">Hover Here</button>
+```
+
+The `data-tlite` attribute specifies the position, but it can also be specified in JavaScript:
 
 ```javascript
 // grav defaults to 'n' (below the target element)
@@ -73,9 +79,23 @@ contentless tags such as img, input, textarea, etc. The workaround is to put
 the toolltip on a wrapper element. This was done so that if an element is
 dynamically removed from the DOM, its tooltip goes with it.
 
+If putting a tooltip inside of a table, you may want to put `tlite-table` class on the table to ensure proper positioning.
+
+Tlite was really designed primarily for hover-based tooltips. If you display tlite tooltips on events other than hover (e.g. on focus or something), it is up to you to handle resize events (either repositioning the tooltip or hiding it), otherwise the tooltip could end up in an unexpected place.
+
+Tlite does not escape your tooltip text. So, if you want to shove raw HTML in there, you can. But if you want to shove user-input in there, it is *your* job to ensure it is properly escaped!
+
+## Using something other than title
+
+If you don't want to use the `title` attribute, you can use a `data-tlite` attribute, instead.
+
+```javascript
+<button data-tlite="My Tooltip">Hover Over Me</button>
+```
+
 ## Installing
 
-Download and include `alite.min.js`
+Download and include `tlite.min.js`
 
 Or install using NPM:
 

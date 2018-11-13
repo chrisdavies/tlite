@@ -1,12 +1,12 @@
 {
   "name": "tlite",
-  "version": "0.1.0",
+  "version": "0.1.9",
   "description": "Tiny tooltip utility",
   "main": "tlite.js",
   "directories": {},
   "scripts": {
     "test": "jasmine-node test/*.spec.js",
-    "min": "uglifyjs tlite.js --source-map tlite.min.js.map -m -c -o tlite.min.js && echo 'Minified size' && cat tlite.min.js | gzip -9f | wc -c"
+    "min": "uglifyjs tlite.js -m -c -o tlite.min.js && echo 'Minified size' && cat tlite.min.js | gzip -9f | wc -c"
   },
   "repository": {
     "type": "git",
@@ -22,6 +22,7 @@
   },
   "homepage": "https://github.com/chrisdavies/tlite",
   "devDependencies": {
-    "jasmine-node": "^1.14.5"
+    "jasmine-node": "^1.16.2",
+    "uglify-js": "^3.4.9"
   }
 }
