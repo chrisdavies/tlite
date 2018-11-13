@@ -1,21 +1,12 @@
 .tlite {
-  background: #111;
-  color: white;
-  font-family: sans-serif;
-  font-size: 0.8rem;
-  font-weight: normal;
-  text-decoration: none;
-  text-align: left;
-  padding: 0.6em 0.75rem;
-  border-radius: 4px;
   position: absolute;
-  opacity: 0;
-  visibility: hidden;
-  transition: opacity 0.4s;
-  white-space: nowrap;
-  box-shadow: 0 0.5rem 1rem -0.5rem black;
   z-index: 1000;
+  visibility: hidden;
+  width: 400px; /*this functions as a max-width for the internal "actual" tooltip, I figure 400px is a good max-size but feel free to change*/
+  transition: opacity 0.4s;
   -webkit-backface-visibility: hidden;
+  text-align: center;
+  opacity: 0;
 }
 
 .tlite-table td,
@@ -28,7 +19,22 @@
   opacity: 0.9;
 }
 
-.tlite::before {
+.tlite > .tlite-inner {
+  background: #111;
+  box-shadow: 0 0.5rem 1rem -0.5rem black;
+  display: inline-block;
+  font-family: sans-serif;
+  font-size: 0.8rem;
+  font-weight: normal;
+  border-radius: 4px;
+  color: white;
+  padding: 0.6em 0.75rem;
+  text-align: left;
+  text-decoration: none;
+  white-space: normal;
+}
+
+.tlite > .tlite-inner::before {
   content: ' ';
   display: block;
   background: inherit;
@@ -38,45 +44,69 @@
   transform: rotate(45deg);
 }
 
-.tlite-n::before {
+.tlite-n > .tlite-inner::before {
   top: -3px;
   left: 50%;
   margin-left: -5px;
 }
 
-.tlite-nw::before {
+.tlite-nw {
+  text-align: left;
+}
+
+.tlite-nw > .tlite-inner::before {
   top: -3px;
   left: 10px;
 }
 
-.tlite-ne::before {
+.tlite-ne {
+  text-align: right;
+}
+
+.tlite-ne > .tlite-inner::before {
   top: -3px;
   right: 10px;
 }
 
-.tlite-s::before {
+.tlite-s > .tlite-inner::before {
   bottom: -3px;
   left: 50%;
   margin-left: -5px;
 }
 
-.tlite-se::before {
+.tlite-se {
+  text-align: right;
+}
+
+.tlite-se > .tlite-inner::before {
   bottom: -3px;
   right: 10px;
 }
 
-.tlite-sw::before {
+.tlite-sw {
+  text-align: left;
+}
+
+.tlite-sw > .tlite-inner::before {
   bottom: -3px;
   left: 10px;
 }
 
-.tlite-w::before {
+.tlite-w {
+  text-align: left;
+}
+
+.tlite-w > .tlite-inner::before {
   left: -3px;
   top: 50%;
   margin-top: -5px;
 }
 
-.tlite-e::before {
+.tlite-e {
+  text-align: right;
+}
+
+.tlite-e > .tlite-inner::before {
   right: -3px;
   top: 50%;
   margin-top: -5px;

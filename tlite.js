@@ -60,10 +60,12 @@ tlite.show = function (el, opts, isAuto) {
 
   function createTooltip(el, text, opts) {
     var tooltipEl = document.createElement('span');
+    var inner = document.createElement('span');
     var grav = opts.grav || el.getAttribute('data-tlite') || 'n';
 
-    tooltipEl.innerHTML = text;
+    inner.innerHTML = text;
 
+    tooltipEl.appendChild(inner);
     el.appendChild(tooltipEl);
 
     var vertGrav = grav[0] || '';
@@ -71,6 +73,7 @@ tlite.show = function (el, opts, isAuto) {
 
     function positionTooltip() {
       tooltipEl.className = 'tlite ' + 'tlite-' + vertGrav + horzGrav;
+      inner.className = 'tlite-inner';
 
       var arrowSize = 10;
       var top = el.offsetTop;
