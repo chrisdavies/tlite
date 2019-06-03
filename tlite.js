@@ -27,7 +27,7 @@ tlite.show = function (el, opts, isAuto) {
     el.addEventListener('mouseleave', autoHide);
 
     function show() {
-      text = el.title || el.getAttribute(fallbackAttrib) || text;
+      text = opts.text || el.title || el.getAttribute(fallbackAttrib) || text;
       el.title = '';
       el.setAttribute(fallbackAttrib, '');
       text && !showTimer && (showTimer = setTimeout(fadeIn, isAuto ? 150 : 1))
